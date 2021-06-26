@@ -8,114 +8,14 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.20/angular-ui-router.min.js"></script>
-	<style>
-		@import "https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css";
-		:root{ font-size: 30px};
-	</style>
+	<link rel="stylesheet" href="index.css">
+	<script>window.thisSitesAppData = {} || window.thisSitesAppData;</script>
+	<script src="app.js"></script>
 </head>
 <body>
-	<nav navigation title="app.data.logo" for="app.data.routes"></nav>
-	<ui-view></ui-view>
-<script>
-	var app = angular.module('app', ['ui.router']);
-	app.controller("appCtrl", function ($scope, $http) {
-		var app = this;
-		app.title = "Boilerplate AJS"
-		$http.get("data.json").then(function(data){app.data = data.data});
-	});
-	app.controller("homeCtrl", function ($scope) {
-		var home = this;
-		home.view = "welcome homeeeeee"
-	});
-	app.config(["$stateProvider", "$locationProvider", function ($stateProvider, $locationProvider) {
-		$locationProvider.html5Mode({
-			enabled: true,
-			requireBase: false
-		});
-		$stateProvider
-			.state('home', {
-				url: "/",
-				template: "<div>" + "{{home.view}}" + "</div>",
-				controller: "homeCtrl",
-				controllerAs: "home"
-			})
-			.state('about', {
-				url: "/",
-				template: "<div>" + "adsfasda" + "</div>",
-				controller: "homeCtrl",
-				controllerAs: "home"
-			})
-	}]);
-	app.directive("navigation", function(){
-		function link(scope, elem, attrs, html){
-			Object.assign(scope, {
-				isOpen: false,
-				size: 1.5,
-				toggleNav(){
-					html.btm.style.height = this.isOpen === false ? "100vh" : "0vh"
-					this.isOpen = !this.isOpen
-				}
-			})
-		}
-		function compile(elem, attrs) {
-			let html = {
-				top: elem[0].querySelector(".top"),
-				btm: elem[0].querySelector("ul"),
-				hamb: elem[0].querySelector(".hamburger")
-			}
-			return function (scope, elem, attrs) {
-			// scope and event listeners
-				link(scope, elem, attrs, html);
-			// functional styles
-				Object.assign(elem[0].style, {
-					position: "fixed",
-					top: "0",
-					width: "100%",
-				})
-				Object.assign(html.top.style, {
-					backgroundColor: "red",
-					display: "flex",
-					alignItems: "center",
-					height: scope.size + "rem",
-					position: "fixed",
-					width: "100%",
-				})
-				Object.assign(html.btm.style, {
-					backgroundColor: "lightgray",
-					overflow: "hidden",
-					height: "0vh",
-					width: "100%",
-					transition: ".5s height",
-				})
-				Object.assign(html.hamb.style, {
-					height: "100%",
-					lineHeight: scope.size + "rem",
-					width: scope.size + "rem",
-					textAlign: "center",
-					verticalAlign: "center",
-					marginLeft: "auto"
-				})
-			}
-		}
-		return {
-			restrict: 'AE',
-			scope: {
-				title: "<",
-				for: "<"
-			},
-			template: (
-				'<div class="top">' +
-					'<div>{{title}}</div>' +
-					'<div class="hamburger" ng-click="toggleNav()">☰</div>' +
-				'</div>' +
-				'<ul>' +
-					'<li ng-repeat="(name, x) in for" ui-sref="{{name}}" ng-click="toggleNav()">{{name}}</li>' +
-				'</ul>'
-			),
-			compile: compile,
-			link: link
-		}
-	})
-</script>
+	<nav navigation title="app.data.title" for="app.data.menu"></nav>
+	<div ui-view></div>
 </body>
+<script>
+</script>
 </html>

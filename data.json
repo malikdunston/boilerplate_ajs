@@ -1,6 +1,7 @@
 {
-	"app": "app",
+	"appName": "app",
 	"logo": "logo",
+	"title": "BoilerPlate AJS",
 	"routes": {
 		"home": {
 			"url": "/",
@@ -10,7 +11,7 @@
 		"about": {
 			"url": "/about",
 			"title": "Welcome to the About Page!!!",
-			"content": "here you'll find some generated content isn't this cool?"
+			"content": "We are a small org specializing in ABC"
 		}
 	}
 }
