@@ -3,6 +3,8 @@
 :root{ font-size: 30px};
 body{
 	background: rgb(220, 220, 220);
+}
+body *{
 	font-family: "Roboto", sans-serif;
 }
 li{

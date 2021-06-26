@@ -1,7 +1,9 @@
 {
-	"appName": "app",
-	"logo": "logo",
-	"title": "BoilerPlate AJS",
+	"appData": {
+		"appName": "app",
+		"logo": "logo",
+		"title": "BoilerPlate AJS"
+	},
 	"routes": {
 		"home": {
 			"url": "/",
