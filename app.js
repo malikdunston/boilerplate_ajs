@@ -1,5 +1,20 @@
 (function () {
 	var app = angular.module('app', ['ui.router']);
+	app.run(function($window, appData, $rootScope){
+		appData.get().then(function(r){
+			Object.keys(r.routes).forEach(k => {
+				let route = r.routes[k];
+				route.state = window.boilerplateAJS.makeStateObj.call(route);
+			})
+		});
+	});
+	app.config(["$stateProvider", "$locationProvider", function ($stateProvider, $locationProvider) {
+		$locationProvider.html5Mode({
+			enabled: true,
+			requireBase: false
+		});
+		$stateProvider.state("otherwise", {url: "/"});
+	}]);
 	app.controller("appCtrl", ["appData", "$transitions", "$rootScope", function (appData, $transitions, $rootScope) {
 		var app = this;
 		appData.get().then(function(data){
@@ -18,41 +33,6 @@
 	}]);
 	app.controller("pageCtrl", ["$scope", "data", "$rootScope", function ($scope, data, $rootScope) {
 		$scope.data = data;
-		console.log($rootScope.state);
-	}]);
-	app.config(["$stateProvider", "$locationProvider", function ($stateProvider, $locationProvider) {
-		$locationProvider.html5Mode({
-			enabled: true,
-			requireBase: false
-		});
-		$stateProvider
-			.state('home', {
-				url: "/",
-				template: "<div>" + "{{data.content}}" + "</div>",
-				controller: "pageCtrl",
-				resolve: {
-					data: function (appData, $rootScope) {
-						return appData.get().then(function(data){
-							let route = $rootScope.state.to ? $rootScope.state.to : "home"
-							return data.routes[route]
-						});
-					}
-				}
-			})
-			.state('about', {
-				url: "/about",
-				template: "<div>" + "{{data.content}}" + "</div>",
-				controller: "pageCtrl",
-				resolve: {
-					data: function (appData, $rootScope) {
-						return appData.get().then(function(data){
-							let route = $rootScope.state.to ? $rootScope.state.to : "home"
-							return data.routes[route]
-						});
-					}
-				}
-			})
-			.state("otherwise", {url: "/"})
 	}]);
 	app.directive("navigation", function(appData){
 		function link(scope, elem, attrs, html){

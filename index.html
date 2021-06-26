@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" ng-app="app" ng-controller="appCtrl as app">
+<html lang="en">
 <head>
 	<title>Boilerplate AJS</title>
 	<base href="/">
@@ -9,9 +9,31 @@
 	<link rel="stylesheet" href="index.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.7.5/angular.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.20/angular-ui-router.min.js"></script>
-	<script>window.boilerplateAJS = {} || window.boilerplateAJS</script>
+	<script>window.boilerplateAJS = {} || window.boilerplateAJS
+
+		boilerplateAJS.makeStateObj = function(){
+			console.log(this);
+			return [
+				this.name,
+				{
+					url: this.url,
+					template: [
+						"<header>", 
+							"<h1>", 
+								"{{data.title}}",
+							"</h1>",
+						"</header>",
+						"<div>", 
+							"{{data.content}}", 
+						"</div>"
+					].join(""),
+					controller: "pageCtrl"
+				}
+			]
+		}
+	</script>
 </head>
-<body>
+<body ng-app="app" ng-controller="appCtrl as app">
 	<nav navigation title="app.data.title" for="app.data.menu"></nav>
 	<div ui-view></div>
 	<script src="app.js"></script>

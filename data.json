@@ -6,11 +6,13 @@
 	},
 	"routes": {
 		"home": {
+			"name": "home",
 			"url": "/",
 			"title": "Welcome to the Homepage!!!",
 			"content": "here you'll find some generated content isn't this cool?"
 		},
 		"about": {
+			"name": "about",
 			"url": "/about",
 			"title": "Welcome to the About Page!!!",
 			"content": "We are a small org specializing in ABC"
