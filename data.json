@@ -1,0 +1,16 @@
+{
+	"app": "app",
+	"logo": "logo",
+	"routes": {
+		"home": {
+			"url": "/",
+			"title": "Welcome to the Homepage!!!",
+			"content": "here you'll find some generated content isn't this cool?"
+		},
+		"about": {
+			"url": "/about",
+			"title": "Welcome to the About Page!!!",
+			"content": "here you'll find some generated content isn't this cool?"
+		}
+	}
+}
